@@ -273,6 +273,11 @@ jobs:
         run: |
           make configure_ci
 
+      - uses: actions/download-artifact@v4
+        with:
+          name: embedded-ui
+          path: src/gen/
+
       - name: Run configure (inside Docker)
         shell: bash
         run: |
@@ -362,6 +367,11 @@ jobs:
           path: 'extension-ci-tools'
           ref: ${{ inputs.ci_tools_version }}
           repository: ${{ inputs.override_ci_tools_repository }}
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: embedded-ui
+          path: src/gen/
 
       - name: Checkout DuckDB to version
         if: ${{inputs.duckdb_version != ''}}
@@ -532,6 +542,11 @@ jobs:
           path: 'extension-ci-tools'
           ref: ${{ inputs.ci_tools_version }}
           repository: ${{ inputs.override_ci_tools_repository }}
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: embedded-ui
+          path: src/gen/
 
       - name: Checkout DuckDB to version
         if: ${{inputs.duckdb_version != ''}}
